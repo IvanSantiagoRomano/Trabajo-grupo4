@@ -9,7 +9,12 @@
 
 .news-card img {
     width: 100%;
+    height: 200px;
     object-fit: cover;
+}
+
+.news-card.highlight img {
+    height: 400px;
 }
 
 .news-content {
