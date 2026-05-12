@@ -1,0 +1,26 @@
+.ads-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.ad-banner {
+    background-color: #e0e0e0;
+    border: 1px dashed #999;
+    padding: 40px 20px;
+    text-align: center;
+    color: #666;
+    font-weight: bold;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .ads-section {
+        flex: 1 1 30%;
+        margin-top: 0;
+    }
+}
