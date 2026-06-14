@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "SFHLZm0Ckho=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\julia_fdelcok\\source\\repos\\GestiAutos\\Application\\Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\julia_fdelcok\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}
