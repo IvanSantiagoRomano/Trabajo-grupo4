@@ -1,0 +1,382 @@
+/* Hecho por Tobias Guzzo */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800;900&display=swap');
+
+:root {
+    --fondo-principal: #1E293B; /* Slate 800 - Gris medio-oscuro elegante */
+    --superficie: #334155; /* Slate 700 - Gris medio */
+    --superficie-clara: #475569; /* Slate 600 */
+    --color-primario: #3B82F6; /* Azul moderno */
+    --color-acento: #60A5FA; /* Azul más claro para hover */
+    --texto: #CBD5E1; /* Gris claro */
+    --texto-claro: #F8FAFC; /* Blanco ahumado */
+    --borde: #475569; /* Borde sutil */
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--fondo-principal);
+    color: var(--texto);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* Animaciones */
+@keyframes entradaArriba {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes entradaIzquierda {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes brilloBoton {
+    0% { left: -100%; }
+    100% { left: 200%; }
+}
+
+.contenedor-principal {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.cabecera {
+    background-color: rgba(30, 41, 59, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--borde);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    animation: entradaArriba 0.6s ease-out forwards;
+}
+
+.contenido-cabecera {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cabecera h1 {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--texto-claro);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.cabecera h1:hover {
+    color: var(--color-primario);
+    transform: scale(1.02);
+}
+
+.navegacion {
+    display: flex;
+    gap: 3rem;
+}
+
+.navegacion a {
+    color: var(--texto-claro);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.navegacion a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -1px;
+    left: 0;
+    background-color: var(--color-primario);
+    border-radius: 2px;
+    transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.navegacion a:hover::after, .navegacion a.activo::after {
+    width: 100%;
+}
+
+.navegacion a:hover, .navegacion a.activo {
+    color: var(--color-primario);
+}
+
+.boton-primario {
+    background-color: var(--color-primario);
+    color: #FFFFFF;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+}
+
+.boton-primario::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
+    transition: all 0.5s;
+}
+
+.boton-primario:hover {
+    background-color: var(--color-acento);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(37, 99, 235, 0.3);
+}
+
+.boton-primario:hover::before {
+    animation: brilloBoton 0.7s forwards;
+}
+
+.boton-secundario {
+    background-color: transparent;
+    color: var(--color-primario);
+    border: 2px solid var(--color-primario);
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    transition: color 0.4s ease, border-color 0.4s ease;
+}
+
+.boton-secundario::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background-color: var(--color-primario);
+    transition: height 0.4s ease;
+    z-index: -1;
+}
+
+.boton-secundario:hover {
+    color: var(--fondo-principal);
+    background-color: var(--color-primario);
+}
+
+.boton-secundario:hover::after {
+    height: 100%;
+}
+
+.contenido-central {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.seccion-hero {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.seccion-hero h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: var(--texto-claro);
+    margin: 0 0 1rem 0;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: entradaIzquierda 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s forwards;
+}
+
+.seccion-hero p {
+    font-size: 1.25rem;
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.6;
+    color: var(--texto);
+    opacity: 0;
+    animation: entradaIzquierda 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s forwards;
+}
+
+.grilla-vehiculos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 2.5rem;
+    opacity: 0;
+    animation: entradaArriba 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.6s forwards;
+}
+
+.tarjeta-vehiculo {
+    background-color: var(--superficie);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--borde);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.tarjeta-vehiculo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 60%, rgba(37, 99, 235, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.tarjeta-vehiculo:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    border-color: var(--color-acento);
+}
+
+.tarjeta-vehiculo:hover::before {
+    opacity: 1;
+}
+
+.contenedor-imagen {
+    position: relative;
+    height: 260px;
+    overflow: hidden;
+}
+
+.imagen-tarjeta {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.tarjeta-vehiculo:hover .imagen-tarjeta {
+    transform: scale(1.08);
+}
+
+.etiqueta-anio {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background-color: var(--superficie);
+    color: var(--texto-claro);
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.tarjeta-vehiculo:hover .etiqueta-anio {
+    transform: scale(1.1) rotate(3deg);
+    background-color: var(--color-primario);
+    color: #F8FAFC;
+}
+
+.cuerpo-tarjeta {
+    padding: 2.5rem 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.cuerpo-tarjeta h3 {
+    margin: 0 0 0.5rem 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--texto-claro);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+}
+
+.tarjeta-vehiculo:hover .cuerpo-tarjeta h3 {
+    color: var(--color-primario);
+}
+
+.descripcion-vehiculo {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.especificaciones {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.pie-tarjeta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--borde);
+    padding-top: 1.5rem;
+    transition: border-color 0.3s ease;
+}
+
+.tarjeta-vehiculo:hover .pie-tarjeta {
+    border-color: rgba(37, 99, 235, 0.2);
+}
+
+.precio {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--texto-claro);
+}
+
+@media (max-width: 768px) {
+    .navegacion {
+        display: none;
+    }
+    
+    .seccion-hero h2 {
+        font-size: 3rem;
+    }
+    
+    .grilla-vehiculos {
+        grid-template-columns: 1fr;
+    }
+}

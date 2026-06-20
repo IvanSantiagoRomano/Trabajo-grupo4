@@ -1,0 +1,148 @@
+/* Hecho por Tobias Guzzo */
+.contenedor-login {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--fondo-principal);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Efecto de luces dinámicas sutiles en el fondo */
+.contenedor-login::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+    top: -100px;
+    right: -100px;
+    border-radius: 50%;
+    animation: flotarLuz 10s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes flotarLuz {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-100px, 50px) scale(1.2); }
+}
+
+@keyframes tarjetaAparece {
+    0% { opacity: 0; transform: scale(0.95) translateY(20px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.tarjeta-login {
+    background-color: var(--superficie);
+    padding: 4rem 3rem;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    max-width: 440px;
+    border: 1px solid var(--borde);
+    position: relative;
+    z-index: 10;
+    opacity: 0;
+    animation: tarjetaAparece 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s forwards;
+}
+
+/* Detalle animado en la parte superior azul tech */
+.tarjeta-login::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background-color: var(--color-primario);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    animation: llenarBorde 1s ease-out 0.8s forwards;
+}
+
+@keyframes llenarBorde {
+    to { width: 100%; }
+}
+
+.titulo-login {
+    margin: 0 0 0.5rem 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--texto-claro);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.contenedor-bandera {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.bandera-argentina {
+    width: 50px;
+    height: auto;
+    border-radius: 4px;
+    filter: grayscale(40%) opacity(0.85); /* Un toque de gris para que quede elegante */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.bandera-argentina:hover {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.05);
+}
+
+.subtitulo-login {
+    text-align: center;
+    color: var(--texto);
+    margin-bottom: 3rem;
+    font-size: 0.95rem;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+.grupo-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.etiqueta {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--texto-claro);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+}
+
+.grupo-input:focus-within .etiqueta {
+    color: var(--color-primario);
+}
+
+.campo-texto {
+    padding: 1rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid var(--borde);
+    background-color: var(--fondo-principal);
+    color: var(--texto-claro);
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.campo-texto:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    background-color: var(--superficie);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+    transform: translateY(-2px);
+}
